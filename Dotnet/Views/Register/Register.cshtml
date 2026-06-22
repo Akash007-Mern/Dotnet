@@ -3,50 +3,67 @@
     Layout = "_StaticLayout";
 }
 
-<form asp-action="Register" asp-controller="Register" method="post" class="max-w-md mx-auto" enctype="multipart/form-data">
+<style>
+    .register-wrapper { max-width:720px; margin:80px auto; padding:24px; }
+    .card { background:#ffffff; border:1px solid #e6e6e6; border-radius:10px; padding:28px; box-shadow:0 6px 24px rgba(16,24,40,0.06); }
+    .card h2 { margin:0 0 12px 0; font-size:20px; color:#0f172a; }
+    .form-row { display:flex; gap:16px; }
+    .col { flex:1; }
+    label.field { display:block; font-size:13px; color:#334155; margin-bottom:6px; }
+    input[type="text"], input[type="email"], input[type="password"], textarea, input[type="file"] { width:100%; padding:10px 12px; border:1px solid #e6e6e6; border-radius:6px; background:#fff; color:#0f172a; }
+    .actions { margin-top:18px; display:flex; justify-content:space-between; align-items:center; }
+    .btn-primary { background:#0b5ed7; color:#fff; padding:10px 14px; border-radius:8px; border:none; text-decoration:none; }
+    .link-muted { color:#64748b; font-size:13px; }
+    @@media (max-width:720px){ .form-row{flex-direction:column} }
+</style>
 
-    <div asp-validation-summary="ModelOnly" class="text-red-700"></div>
-    <div class="grid md:grid-cols-2 md:gap-6">
-        <div class="relative z-0 w-full mb-5 group">
-            <input asp-for="FullName" type="text" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
-            <label asp-for="FullName" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Full name</label>
-            <span asp-validation-for="FullName" class="text-red-700"></span>
-        </div>
+<div class="register-wrapper">
+    <div class="card">
+        <h2>Create your account</h2>
+        <p class="link-muted">Enter your details to create a new account.</p>
 
-        <div class="relative z-0 w-full mb-5 group">
-            <input asp-for="EmailAddress" type="email" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
-            <label asp-for="EmailAddress" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email address</label>
-            <span asp-validation-for="EmailAddress" class="text-red-700"></span>
-        </div>
+        <form asp-action="Register" asp-controller="Register" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-red-600" />
 
-        <div class="relative z-0 w-full mb-5 group">
-            <input asp-for="CurrentAddress" type="text" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
-            <label asp-for="CurrentAddress" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Current address</label>
-            <span asp-validation-for="CurrentAddress" class="text-red-700"></span>
-        </div>
+            <div class="form-row" style="margin-top:18px">
+                <div class="col">
+                    <label class="field" asp-for="FullName">Full name</label>
+                    <input asp-for="FullName" type="text" />
+                    <span asp-validation-for="FullName" class="text-red-600"></span>
+                </div>
+                <div class="col">
+                    <label class="field" asp-for="EmailAddress">Email address</label>
+                    <input asp-for="EmailAddress" type="email" />
+                    <span asp-validation-for="EmailAddress" class="text-red-600"></span>
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-top:12px">
+                <div class="col">
+                    <label class="field" asp-for="CurrentAddress">Current address</label>
+                    <input asp-for="CurrentAddress" type="text" />
+                    <span asp-validation-for="CurrentAddress" class="text-red-600"></span>
+                </div>
+                <div class="col">
+                    <label class="field" asp-for="UserPassword">Password</label>
+                    <input asp-for="UserPassword" type="password" />
+                    <span asp-validation-for="UserPassword" class="text-red-600"></span>
+                </div>
+            </div>
+
+            <div style="margin-top:12px">
+                <label class="field" asp-for="UserFile">Profile image (optional)</label>
+                <input asp-for="UserFile" type="file" />
+                <span asp-validation-for="UserFile" class="text-red-600"></span>
+            </div>
+
+            <input asp-for="UserRole" type="hidden" value="User" />
+
+            <div class="actions">
+                <a asp-controller="Account" asp-action="Login" class="link-muted">Already have an account? Log in</a>
+                <button type="submit" class="btn-primary">Create account</button>
+            </div>
+        </form>
     </div>
-
-    <div class="relative z-0 w-full mb-5 group">
-        <input asp-for="UserPassword" type="password" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
-        <label asp-for="UserPassword" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Password</label>
-        <span asp-validation-for="UserPassword" class="text-red-700"></span>
-    </div>
-
-   @*  <div class="relative z-0 w-full mb-5 group">
-        <input name="ConfirmPassword" type="password" id="floating_repeat_password" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
-        <label for="floating_repeat_password" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Confirm password</label>
-    </div> *@
-
-   
-    <div class="relative z-0 w-full mb-5 group">
-        <input asp-for="UserFile" type="file" class="block w-full text-sm text-heading" />
-        <label asp-for="UserFile" class="text-sm text-body">Profile image</label>
-        <span asp-validation-for="UserFile" class="text-red-700"></span>
-    </div>
-
-    <input asp-for="UserRole" type="hidden" value="User" />
-
-    <input type="submit"
-           value="Submit"
-           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none" />
-</form>
+</div>

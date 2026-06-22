@@ -45,46 +45,122 @@
 
     @RenderSection("styles", required: false)
     <script type="importmap"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
    
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Dotnet.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dotnet</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        <header>
+            <nav class="bg-white border-gray-200 dark:bg-gray-900">
+                <div class="max-w-screen-xl mx-auto flex items-center justify-between p-4">
+                    <!-- Logo -->
+                    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Blog Max</span>
+                    </a>
 
+                    <!-- Navigation Links -->
+                    <ul class="flex items-center space-x-8 font-medium text-sm">
+                        <li>
+                            <a asp-action="Index" asp-controller="Home" class="text-blue-700 dark:text-blue-500">Home</a>
+                        </li>
+                        <li>
+                            <a asp-action="Index" asp-controller="Home" class="text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500">Users List</a>
+                        </li>
+                        <li>
+                            <a asp-action="AddBlog" asp-controller="Blog" class="text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500">Add Blog</a>
+                        </li>
+                        @if (User?.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li>
+                                <a asp-controller="Dashboard" asp-action="Index" class="text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500">Dashboard</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-controller="Account" asp-action="Login" class="text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500">Login</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Register" asp-action="Register" class="text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500">Register</a>
+                            </li>
+                        }
+                    </ul>
+
+                    <!-- Profile -->
+                    <div class="relative flex items-center">
+                        <!-- Ajax call trigger -->
+                        <a data-ajax="true" data-ajax-method="get" data-ajax-update="#profile-img"
+                           class="btn-profile-img hidden"
+                           asp-action="ProfileImage" asp-controller="Home"></a>
+
+                        <!-- Profile Image -->
+                        <button id="profile-img" type="button"
+                                class="w-10 h-10 rounded-full bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                            <span class="sr-only">Open user menu</span>
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                            <div id="user-dropdown"
+                                 class="z-50 hidden my-4 text-base list-none divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 bg-white">
+                            <div class="px-4 py-3">
+                                <span class="block text-sm text-gray-900 dark:text-white">@User.FindFirst("FullName")?.Value</span>
+                                <span class="block text-sm text-gray-500 truncate dark:text-gray-400">@User.FindFirst("email")?.Value</span>
+                            </div>
+                            <ul class="py-2">
+                                <li>
+                                    <a asp-action="ProfileUpdate" asp-controller="Home"
+                                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600">Profile</a>
+                                </li>
+                                <li>
+                                    <a asp-action="ChangePassword" asp-controller="Account"
+                                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600">Change Password</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600">Earnings</a>
+                                </li>
+                                <li>
+                                    @if (User?.Identity?.IsAuthenticated ?? false)
+                                    {
+                                        <form asp-controller="Logout" asp-action="Logout" method="post" class="m-0">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600">Sign out</button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Account" asp-action="Login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600">Sign in</a>
+                                    }
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="mt-5 container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    }
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2026 - Dotnet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function () {
+        //load profile image on page load
+        $(".btn-profile-img").click();
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

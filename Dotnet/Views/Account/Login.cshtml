@@ -1,0 +1,72 @@
+@model Dotnet.Models.UserListEdit
+@{
+    Layout = "_StaticLayout";
+}
+
+<style>
+    .editor-shell { display:flex; gap:16px; align-items:stretch; }
+    .editor-panel { flex:1; background:#1e1e2a; color:#d4d4d8; border-radius:6px; box-shadow:0 6px 18px rgba(2,6,23,0.4); overflow:hidden; }
+    .editor-header { display:flex; align-items:center; gap:8px; padding:12px 16px; background:linear-gradient(90deg,#111218,#1b1b27); border-bottom:1px solid rgba(255,255,255,0.03); }
+    .tab { background:transparent; color:#cbd5e1; padding:6px 10px; border-radius:4px; font-family:Consolas,monospace; font-size:13px; }
+    .tab.active { background:#2a2a36; color:#fff; }
+    .editor-body { padding:20px; display:flex; gap:24px; }
+    .code-area { flex:1; font-family:Consolas,monospace; font-size:13px; color:#e6e6e6; }
+    .form-card { background:rgba(255,255,255,0.03); padding:18px; border-radius:6px; width:420px; }
+    .form-card label { color:#9aa4b2; font-size:12px; }
+    .form-card input { width:100%; padding:10px 12px; margin-top:6px; margin-bottom:12px; border-radius:6px; border:1px solid rgba(255,255,255,0.06); background:rgba(0,0,0,0.25); color:#fff; }
+    .form-card button { background:#0ea5a4; color:#061024; padding:10px 14px; border-radius:6px; border:none; font-weight:600; }
+    .sidebar { width:300px; background:#0f1724; color:#cbd5e1; border-radius:6px; padding:12px; }
+    .file { padding:6px 8px; border-radius:4px; font-family:Segoe UI,Segoe,Arial; font-size:13px; }
+    .file.folder { color:#94a3b8; font-weight:600; }
+    .file.active { background:rgba(255,255,255,0.03); }
+    @@media (max-width:900px){ .editor-shell{flex-direction:column} .sidebar{width:100%} }
+</style>
+
+<div class="editor-shell">
+    <div class="editor-panel">
+        <div class="editor-header">
+            <a href="c:\users\acer\source\repos\dotnet\dotnet\views\account\login.cshtml">c:\users\acer\source\repos\dotnet\dotnet\views\account\login.cshtml</a>
+            <div class="tab">AccountController.cs</div>
+            <div class="tab">Register.cshtml</div>
+            <div class="tab active">Login.cshtml</div>
+        </div>
+
+        <div class="editor-body">
+            <div class="code-area">
+                <div style="margin-bottom:12px;color:#7dd3fc;font-family:Consolas,monospace;">// Login Page</div>
+
+                <div class="form-card">
+                    <form asp-action="Login" asp-controller="Account" method="post">
+                        @Html.AntiForgeryToken()
+                        <label asp-for="EmailAddress">Email</label>
+                        <input asp-for="EmailAddress" type="email" placeholder="you@example.com" required />
+                        <span asp-validation-for="EmailAddress" class="text-red-400"></span>
+
+                        <label asp-for="UserPassword">Password</label>
+                        <input asp-for="UserPassword" type="password" placeholder="Enter password" required />
+                        <span asp-validation-for="UserPassword" class="text-red-400"></span>
+
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+                            <button type="submit">Log in</button>
+                            <a asp-controller="Register" asp-action="Register" style="color:#93c5fd;font-size:13px">Create account</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div style="font-weight:700;margin-bottom:8px;">Solution Explorer</div>
+        <div class="file folder">Dotnet</div>
+        <div class="file">- Controllers</div>
+        <div class="file" style="padding-left:16px;">AccountController.cs</div>
+        <div class="file" style="padding-left:16px;">RegisterController.cs</div>
+        <div class="file">- Views</div>
+        <div class="file" style="padding-left:16px;">Account</div>
+        <div class="file active" style="padding-left:32px;">Login.cshtml</div>
+        <div class="file" style="padding-left:32px;">Register.cshtml</div>
+        <div style="margin-top:12px;color:#94a3b8;font-size:13px;">Search</div>
+        <input type="text" placeholder="Ctrl+;" style="width:100%;margin-top:6px;padding:6px;border-radius:4px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+    </div>
+</div>
