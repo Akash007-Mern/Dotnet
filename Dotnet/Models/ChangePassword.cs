@@ -17,5 +17,11 @@ namespace Dotnet.Models
         [DataType(DataType.Password)]
         [Compare("NewPassword", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; } = null!;
+
+
+        public string EmailToken { get; set; } = null!;
+
+        public string EmailAddress { get; set; } = null!;
     }
+    
 }

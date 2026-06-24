@@ -1,0 +1,41 @@
+﻿@model Dotnet.Models.UserListEdit
+
+@{
+    ViewData["Title"] = "Forgot Password";
+    Layout = "_StaticLayout";
+
+}
+
+<div class="max-w-lg mx-auto mt-8 bg-white shadow-lg rounded-lg p-6">
+
+    <h2 class="text-2xl font-bold text-center mb-6">
+        Forgot Password
+    </h2>
+
+    <p class="text-gray-500 text-sm text-center mb-6">
+        Enter your token
+    </p>
+
+    <form asp-action="VerifyToken" class="mb-4">
+
+        <div asp-validation-summary="ModelOnly" class="text-red-400 mb-4"></div>
+        <input type="hidden" asp-for="EmailAddress" />
+        <div class="mb-4">
+            <label asp-for="EmailToken" class="block mb-2 text-sm font-medium text-gray-700">
+                Token
+            </label>
+
+            <input asp-for="EmailToken"
+                   type="number"
+                   class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                   placeholder="Enter your token" />
+
+            <span asp-validation-for="EmailToken"
+                  class="text-red-600 text-sm"></span>
+        </div>
+        <button type="submit"
+                class="w-full bg-blue-600 text-white rounded-lg py-2 hover:bg-blue-700 transition">
+            Verify
+        </button>
+    </form>
+</div>
