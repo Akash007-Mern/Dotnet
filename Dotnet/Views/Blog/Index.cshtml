@@ -1,0 +1,174 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blog — Index</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.4.1/tailwind.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.1/flowbite.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.1/flowbite.min.js"></script>
+        <style>
+            body {
+            font-family: 'Inter', ui-sans-serif, system-ui;
+            background: #f8fafc;
+            }
+        </style>
+    </head>
+    <body class="dark:bg-gray-900">
+
+        <!-- Header -->
+        <header class="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+            <div class="max-w-6xl mx-auto px-4 py-5 flex items-center justify-between">
+                <a href="#" class="text-xl font-bold text-gray-900 dark:text-white">Our<span class="text-blue-600">Blog</span></a>
+                <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-600 dark:text-gray-300">
+                    <a href="#" class="hover:text-blue-600">Home</a>
+                    <a href="#" class="hover:text-blue-600">Categories</a>
+                    <a href="#" class="hover:text-blue-600">About</a>
+                    <a href="#" class="hover:text-blue-600">Contact</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <section class="max-w-6xl mx-auto px-4 pt-12 pb-8">
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Latest articles</span>
+            <h1 class="mt-4 text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white">From the Blog</h1>
+            <p class="mt-2 text-gray-500 dark:text-gray-400 max-w-2xl">Insights, tutorials, and updates from our team — fresh posts every week.</p>
+        </section>
+
+        <!-- Category filter pills -->
+        <section class="max-w-6xl mx-auto px-4 mb-8 flex flex-wrap gap-2">
+            <button class="px-4 py-1.5 rounded-full bg-blue-600 text-white text-sm font-medium">All</button>
+            <button class="px-4 py-1.5 rounded-full bg-white border border-gray-200 text-gray-700 text-sm font-medium hover:border-blue-400 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300">Design</button>
+            <button class="px-4 py-1.5 rounded-full bg-white border border-gray-200 text-gray-700 text-sm font-medium hover:border-blue-400 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300">Development</button>
+            <button class="px-4 py-1.5 rounded-full bg-white border border-gray-200 text-gray-700 text-sm font-medium hover:border-blue-400 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300">Marketing</button>
+        </section>
+
+        <!-- Featured post -->
+        <section class="max-w-6xl mx-auto px-4 mb-12">
+            <a href="#" class="group block bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700 md:flex">
+                <img class="w-full md:w-1/2 h-64 md:h-auto object-cover" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/image-1.png" alt="Featured post cover">
+                <div class="p-6 md:p-8 flex flex-col justify-center">
+                    <span class="text-xs font-semibold text-blue-600 uppercase tracking-wide">Featured · Development</span>
+                    <h2 class="mt-3 text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600">How to build a scalable component library</h2>
+                    <p class="mt-3 text-gray-500 dark:text-gray-400">A practical guide to structuring reusable UI components that scale across teams and products without turning into chaos.</p>
+                    <div class="mt-5 flex items-center gap-3">
+                        <img class="w-9 h-9 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Author avatar">
+                        <div class="text-sm">
+                            <p class="font-medium text-gray-900 dark:text-white">Jese Leos</p>
+                            <p class="text-gray-400">June 18, 2026 · 6 min read</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!-- Post grid -->
+        <section class="max-w-6xl mx-auto px-4 pb-16">
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+                <!-- Card -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
+                    <a href="#"><img class="w-full h-44 object-cover" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/image-2.png" alt=""></a>
+                    <div class="p-5">
+                        <span class="text-xs font-semibold text-blue-600 uppercase">Design</span>
+                        <a href="#"><h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white hover:text-blue-600">Color systems that actually scale</h3></a>
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Why semantic tokens beat hard-coded hex values in every design system worth maintaining.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
+                            <span>June 20, 2026</span>
+                            <span>4 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
+                    <a href="#"><img class="w-full h-44 object-cover" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/image-3.png" alt=""></a>
+                    <div class="p-5">
+                        <span class="text-xs font-semibold text-green-600 uppercase">Marketing</span>
+                        <a href="#"><h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white hover:text-blue-600">Writing headlines people click</h3></a>
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Five copywriting patterns we tested across 200 landing pages, and what actually moved the needle.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
+                            <span>June 15, 2026</span>
+                            <span>5 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
+                    <a href="#"><img class="w-full h-44 object-cover" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/image-4.png" alt=""></a>
+                    <div class="p-5">
+                        <span class="text-xs font-semibold text-purple-600 uppercase">Development</span>
+                        <a href="#"><h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white hover:text-blue-600">Server components, simplified</h3></a>
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">A no-nonsense mental model for when to fetch on the server versus the client.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
+                            <span>June 10, 2026</span>
+                            <span>7 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
+                    <a href="#"><img class="w-full h-44 object-cover" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/image-1.png" alt=""></a>
+                    <div class="p-5">
+                        <span class="text-xs font-semibold text-blue-600 uppercase">Design</span>
+                        <a href="#"><h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white hover:text-blue-600">Designing empty states with purpose</h3></a>
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Empty doesn't mean boring — turn blank screens into clear next steps.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
+                            <span>June 5, 2026</span>
+                            <span>3 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
+                    <a href="#"><img class="w-full h-44 object-cover" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/image-2.png" alt=""></a>
+                    <div class="p-5">
+                        <span class="text-xs font-semibold text-green-600 uppercase">Marketing</span>
+                        <a href="#"><h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white hover:text-blue-600">SEO basics that still matter in 2026</h3></a>
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Algorithms changed a lot, but a handful of fundamentals never stopped working.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
+                            <span>May 30, 2026</span>
+                            <span>6 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
+                    <a href="#"><img class="w-full h-44 object-cover" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/image-3.png" alt=""></a>
+                    <div class="p-5">
+                        <span class="text-xs font-semibold text-purple-600 uppercase">Development</span>
+                        <a href="#"><h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white hover:text-blue-600">A practical guide to API versioning</h3></a>
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Avoid breaking every client every time you ship — strategies that actually hold up.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
+                            <span>May 22, 2026</span>
+                            <span>8 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Pagination (Flowbite) -->
+            <nav class="flex justify-center mt-12" aria-label="Pagination">
+                <ul class="inline-flex -space-x-px text-sm">
+                    <li><a href="#" class="flex items-center justify-center px-3 h-9 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700">Prev</a></li>
+                    <li><a href="#" class="flex items-center justify-center px-3 h-9 leading-tight text-white bg-blue-600 border border-blue-600">1</a></li>
+                    <li><a href="#" class="flex items-center justify-center px-3 h-9 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700">2</a></li>
+                    <li><a href="#" class="flex items-center justify-center px-3 h-9 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700">3</a></li>
+                    <li><a href="#" class="flex items-center justify-center px-3 h-9 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700">Next</a></li>
+                </ul>
+            </nav>
+        </section>
+
+    </body>
+</html>
+}
